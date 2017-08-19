@@ -31,30 +31,44 @@ nsites = 66
 #-------------------------------------------------------------------------- 
 
 # Open Excel
-path = "/gps/Bruce/KilaueaKoaeProject/data/coords"
-access = xlrd.open_workbook(path+"/alldata.xlsx")
-lendata = load_workbook(filename=path+"/alldata.xlsx", read_only=True)
+path = "/gps/Bruce/KilaueaKoaeProject/data/data_koae/excel"
+k2003 = xlrd.open_workbook(path+"/KOAE_2003.xlsx")
+k2004 = xlrd.open_workbook(path+"/KOAE_2004.xlsx")
+k2006 = xlrd.open_workbook(path+"/KOAE_2006.xlsx")
+k2007 = xlrd.open_workbook(path+"/KOAE_2007.xlsx")
+k2008 = xlrd.open_workbook(path+"/KOAE_2008.xlsx")
+k2009 = xlrd.open_workbook(path+"/KOAE_2009.xlsx")
+k2011 = xlrd.open_workbook(path+"/KOAE_2011.xlsx")
+k2017 = xlrd.open_workbook(path+"/KOAE_2017.xlsx")
+#lendata = load_workbook(filename=path+"/KOAE_2003.xlsx", read_only=True)
 
 # Open all sheets
-sheets = access.sheet_names()
+sheets2003 = k2003.sheet_names()
+sheets2004 = k2004.sheet_names()
+sheets2006 = k2006.sheet_names()
+sheets2007 = k2007.sheet_names()
+sheets2008 = k2008.sheet_names()
+sheets2009 = k2009.sheet_names()
+sheets2011 = k2011.sheet_names()
+sheets2017 = k2017.sheet_names()
 
 # 2003
-s2003 = access.sheet_by_name(sheets[2])
+s2003 = k2003.sheet_by_name(sheets2003[2])
 # 2004
-s2004 = access.sheet_by_name(sheets[4])
+s2004 = k2004.sheet_by_name(sheets2004[2])
 # 2006
-s2006 = access.sheet_by_name(sheets[6])
+s2006 = k2006.sheet_by_name(sheets2006[2])
 # 2007
-s2007 = access.sheet_by_name(sheets[8])
+s2007 = k2007.sheet_by_name(sheets2007[2])
 # 2008
-s2008 = access.sheet_by_name(sheets[11])
+s2008 = k2008.sheet_by_name(sheets2008[3])
 # 2009
-s2009 = access.sheet_by_name(sheets[13])
+s2009 = k2009.sheet_by_name(sheets2009[2])
 # 2011
-s2011 = access.sheet_by_name(sheets[15])
+s2011 = k2011.sheet_by_name(sheets2011[2])
 # 2017
-s2017 = access.sheet_by_name(sheets[17])
-
+s2017gamit = k2017.sheet_by_name(sheets2017[2])
+s2017lgo = k2017.sheet_by_name(sheets2017[4])
 
 #--------------------------------------------------------------------------
 # Convert in Python transposed matrix.
@@ -119,10 +133,15 @@ for i in range(12):
     for j in range(nsites):
         m2011[i][j] = s2011.cell_value(j,i)
         
-m2017 = np.zeros((12,nsites))
+m2017gamit = np.zeros((12,nsites))
 for i in range(12):
     for j in range(nsites):
-        m2017[i][j] = s2017.cell_value(j,i)
+        m2017gamit[i][j] = s2017gamit.cell_value(j,i)
+
+m2017lgo = np.zeros((12,nsites))
+for i in range(12):
+    for j in range(nsites):
+        m2017lgo[i][j] = s2017lgo.cell_value(j,i)
 
 
 
@@ -177,12 +196,19 @@ for i in range(1, 4):
     for j in range(nsites):
         m2011c[i][j] = m2011[i+3][j]
         
-m2017c = np.zeros((4,nsites))
+m2017gamitc = np.zeros((4,nsites))
 for j in range(nsites):
-    m2017c[0][j] = m2017[0][j]
+    m2017gamitc[0][j] = m2017gamit[0][j]
 for i in range(1, 4):
     for j in range(nsites):
-        m2017c[i][j] = m2017[i+3][j]
+        m2017gamitc[i][j] = m2017gamit[i+3][j]
+
+m2017lgoc = np.zeros((4,nsites))
+for j in range(nsites):
+    m2017lgoc[0][j] = m2017lgo[0][j]
+for i in range(1, 4):
+    for j in range(nsites):
+        m2017lgoc[i][j] = m2017lgo[i+3][j]
 
 
 
@@ -237,12 +263,27 @@ for i in range(1, 4):
     for j in range(nsites):
         m2011l[i][j] = m2011[i+6][j]
         
-m2017l = np.zeros((4,nsites))
+m2017gamitl = np.zeros((4,nsites))
 for j in range(nsites):
-    m2017l[0][j] = m2017[0][j]
+    m2017gamitl[0][j] = m2017gamit[0][j]
 for i in range(1, 4):
     for j in range(nsites):
-        m2017l[i][j] = m2017[i+6][j]
+        m2017gamitl[i][j] = m2017gamit[i+6][j]
+
+m2017lgol = np.zeros((4,nsites))
+for j in range(nsites):
+    m2017lgol[0][j] = m2017lgo[0][j]
+for i in range(1, 4):
+    for j in range(nsites):
+        m2017lgol[i][j] = m2017lgo[i+6][j]
+
+# Difference between gamit and lgo
+m2017ddl = np.zeros((4,nsites))
+for j in range(nsites):
+    m2017ddl[0][j] = m2017gamit[0][j]
+for i in range(1, 4):
+    for j in range(nsites):
+        m2017ddl[i][j] = m2017gamit[i+6][j] - m2017lgo[i+6][j] 
 
 
 
@@ -297,38 +338,36 @@ for i in range(1, 3):
     for j in range(nsites):
         m2011u[i][j] = m2011[i+9][j]
         
-m2017u = np.zeros((3,nsites))
+m2017gamitu = np.zeros((3,nsites))
 for j in range(nsites):
-    m2017u[0][j] = m2017[0][j]
+    m2017gamitu[0][j] = m2017gamit[0][j]
 for i in range(1, 3):
     for j in range(nsites):
-        m2017u[i][j] = m2017[i+9][j]    
+        m2017gamitu[i][j] = m2017gamit[i+9][j]    
 
-m2017u_x = open("data/coords/m2017u_x.dat", "w")
-m2017u_y = open("data/coords/m2017u_y.dat", "w")
-for i in range(nsites):
-    m2017u_x.write(str(m2017u[1][i]) + "\n")
-    m2017u_y.write(str(m2017u[2][i]) + "\n")
-m2017u_x.close() 
-m2017u_y.close() 
-
-# other way        
-"""
-m2017ll = np.zeros((4,nsites))
+m2017lgou = np.zeros((3,nsites))
 for j in range(nsites):
-    m2017ll[0][j] = m2017[0][j]
-    ll = geo.cart_to_geo(m2017[1][j], m2017[2][j], m2017[3][j])
-    m2017ll[1][j] = ll[0]
-    m2017ll[2][j] = ll[1]
-    m2017ll[3][j] = ll[2]      
-""" 
-    
-      
+    m2017lgou[0][j] = m2017lgo[0][j]
+for i in range(1, 3):
+    for j in range(nsites):
+        m2017lgou[i][j] = m2017lgo[i+9][j] 
         
-mYearsXY = [m2003u, m2004u, m2006u, m2007u, m2008u, m2009u, m2011u, m2017u]
-mYearsZ = [m2003l, m2004l, m2006l, m2007l, m2008l, m2009l, m2011l, m2017l]
+# Difference between gamit and lgo
+m2017ddu = np.zeros((3,nsites))
+for j in range(nsites):
+    m2017ddu[0][j] = m2017gamit[0][j]
+for i in range(1, 3):
+    for j in range(nsites):
+        m2017ddu[i][j] = m2017gamit[i+9][j] - m2017lgo[i+9][j] 
+
+        
+        
+mYearsXY = [m2003u, m2004u, m2006u, m2007u, m2008u, m2009u, m2011u, m2017gamitu]
+mYearsZ = [m2003l, m2004l, m2006l, m2007l, m2008l, m2009l, m2011l, m2017gamitl]
 len_mYears = len(mYearsXY)
+# use gamit for 2017 !!!
 mYears_name = [2003, 2004, 2006, 2007, 2008, 2009, 2011, 2017]
+
 
 
 #--------------------------------------------------------------------------
@@ -403,10 +442,8 @@ m2017_2011 = np.empty((4,nsites))
 m2017_2011[:] = np.NAN
 m2006_2003 = np.empty((4,nsites))
 m2006_2003[:] = np.NAN
-m2011_2003 = np.empty((4,nsites))
-m2011_2003[:] = np.NAN
-m2011_2006 = np.empty((4,nsites))
-m2011_2006[:] = np.NAN
+m2009_2003 = np.empty((4,nsites))
+m2009_2003[:] = np.NAN
 
 # Loop on each site
 for site in range(1, nsites+1):
@@ -416,14 +453,13 @@ for site in range(1, nsites+1):
     m2017_2009[0][site-1] = site
     m2017_2011[0][site-1] = site
     m2006_2003[0][site-1] = site
-    m2011_2003[0][site-1] = site
-    m2011_2006[0][site-1] = site
+    m2009_2003[0][site-1] = site
     # Test to know which year of start 
     if se['se_%02d' % site][1][0] != 'nan' and se['se_%02d' % site][1][-1] != 'nan':
         # m2017_2003
         m2017_2003[1][site-1] = - se['se_%02d' % site][1][0] + se['se_%02d' % site][1][-1]
         m2017_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][-1]
-        m2017_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][-1]    
+        m2017_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][-1]   
     if se['se_%02d' % site][1][2] != 'nan' and se['se_%02d' % site][1][-1] != 'nan':
         # m2017_2006
         m2017_2006[1][site-1] = - se['se_%02d' % site][1][2] + se['se_%02d' % site][1][-1]
@@ -445,18 +481,9 @@ for site in range(1, nsites+1):
         m2006_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][2]
         m2006_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][2] 
     if se['se_%02d' % site][1][0] != 'nan' and se['se_%02d' % site][1][6] != 'nan':
-        # m2011_2003
-        m2011_2003[1][site-1] = - se['se_%02d' % site][1][0] + se['se_%02d' % site][1][6]
-        m2011_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][6]
-        m2011_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][6] 
-    if se['se_%02d' % site][1][2] != 'nan' and se['se_%02d' % site][1][6] != 'nan':
-        # m2011_2006
-        m2011_2006[1][site-1] = - se['se_%02d' % site][1][2] + se['se_%02d' % site][1][6]
-        m2011_2006[2][site-1] = - se['se_%02d' % site][2][2] + se['se_%02d' % site][2][6]
-        m2011_2006[3][site-1] = - se['se_%02d' % site][3][2] + se['se_%02d' % site][3][6] 
-    # else, we let nan 
-
-
-#print(m2017_2003)
+        # m2009_2003
+        m2009_2003[1][site-1] = - se['se_%02d' % site][1][0] + se['se_%02d' % site][1][5]
+        m2009_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][5]
+        m2009_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][5] 
 
 
