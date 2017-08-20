@@ -480,7 +480,7 @@ for site in range(1, nsites+1):
         m2006_2003[1][site-1] = - se['se_%02d' % site][1][0] + se['se_%02d' % site][1][2]
         m2006_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][2]
         m2006_2003[3][site-1] = - se['se_%02d' % site][3][0] + se['se_%02d' % site][3][2] 
-    if se['se_%02d' % site][1][0] != 'nan' and se['se_%02d' % site][1][6] != 'nan':
+    if se['se_%02d' % site][1][0] != 'nan' and se['se_%02d' % site][1][5] != 'nan':
         # m2009_2003
         m2009_2003[1][site-1] = - se['se_%02d' % site][1][0] + se['se_%02d' % site][1][5]
         m2009_2003[2][site-1] = - se['se_%02d' % site][2][0] + se['se_%02d' % site][2][5]

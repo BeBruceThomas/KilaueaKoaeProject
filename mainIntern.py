@@ -202,27 +202,27 @@ if __name__ == "__main__":
     plt.plot(uy03, d1_03_17, marker='+', linestyle='', color='b', label="2017-2003")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d1_03_17[i]))     
-        
+       
     plt.plot(uy06, d1_06_17, marker='+',  linestyle='', color='g', label="2017-2006")  
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy06[i], d1_06_17[i]))    
-    
+    """
     plt.plot(uy03, d1_03_06, marker='+', linestyle='', color='m', label="2006-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d1_03_06[i]))    
-    
+    """
     plt.plot(uy09, d1_09_17, marker='+', linestyle='', color='r', label="2017-2009")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy09[i], d1_09_17[i])) 
-        
+    """    
     plt.plot(uy11, d1_11_17, marker='+', linestyle='', color='c', label="2017-2011") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy11[i], d1_11_17[i]))    
-    
+    """
     plt.plot(uy03, d1_03_09, marker='+', linestyle='', color='y', label="2009-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d1_03_09[i]))   
-           
+          
     plt.xlabel('Northing UTM (m) : --> South to North -->')
     plt.ylabel('Cumulative Displacement in Easting UTM (m)')
     plt.title('Cumulative Displacement in Easting : years')
@@ -240,27 +240,27 @@ if __name__ == "__main__":
     plt.plot(uy03, d2_03_17, marker='+', linestyle='', color='b', label="2017-2003")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d2_03_17[i]))   
-        
+      
     plt.plot(uy06, d2_06_17, marker='+',  linestyle='', color='g', label="2017-2006")  
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy06[i], d2_06_17[i]))    
-    
+    """
     plt.plot(uy03, d2_03_06, marker='+', linestyle='', color='m', label="2006-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d2_03_06[i]))    
-    
+    """
     plt.plot(uy09, d2_09_17, marker='+', linestyle='', color='r', label="2017-2009")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy09[i], d2_09_17[i])) 
-        
+    """    
     plt.plot(uy11, d2_11_17, marker='+', linestyle='', color='c', label="2017-2011") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy11[i], d2_11_17[i]))    
-    
+    """
     plt.plot(uy03, d2_03_09, marker='+', linestyle='', color='y', label="2009-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d2_03_09[i]))  
-
+    
     plt.xlabel('Northing UTM (m) : --> South to North -->')
     plt.ylabel('Cumulative Displacement in Northing UTM (m)')
     plt.title('Cumulative Displacement in Northing : years')
@@ -278,27 +278,27 @@ if __name__ == "__main__":
     plt.plot(uy03, d3_03_17, marker='+', linestyle='', color='b', label="20017-2003")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d3_03_17[i])) 
-        
+       
     plt.plot(uy06, d3_06_17, marker='+',  linestyle='', color='g', label="2017-2006")  
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy06[i], d3_06_17[i]))    
-    
+    """
     plt.plot(uy03, d3_03_06, marker='+', linestyle='', color='m', label="2006-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d3_03_06[i]))    
-    
+    """
     plt.plot(uy09, d3_09_17, marker='+', linestyle='', color='r', label="2017-2009")     
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy09[i], d3_09_17[i]))  
-        
+    """    
     plt.plot(uy11, d3_11_17, marker='+', linestyle='', color='c', label="2017-2011") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy11[i], d3_11_17[i]))    
-    
+    """
     plt.plot(uy03, d3_03_09, marker='+', linestyle='', color='y', label="2009-2003") 
     for i in range(coords.nsites):
         plt.annotate(int(name[i]), (uy03[i], d3_03_09[i]))     
-
+    
     plt.xlabel('Northing UTM (m) : --> South to North -->')
     plt.ylabel('Cumulative Displacement in Altitude (m)')
     plt.title('Cumulative Displacement in Altitude : years')
