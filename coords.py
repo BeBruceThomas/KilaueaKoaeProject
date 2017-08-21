@@ -12,6 +12,7 @@ Could be done automatic.
 """
 
 import os
+import matplotlib.pyplot as plt
 # Get all the files in the current working directory: optionnal, just to check if the directory is the good one 
 cwd = os.getcwd()
 files = os.listdir(cwd)
@@ -387,6 +388,7 @@ array([[ year ...],
 se = defaultdict(int)
 
 # Loop on each site
+
 for site in range(1, nsites+1):
     # Create matrix changing name 
     se['se_%02d' % site] = np.empty((4,len_mYears))
@@ -408,6 +410,16 @@ for site in range(1, nsites+1):
             # Check if data for this site
             if site == m[0][i]:
                 se['se_%02d' % site][3][year] = m[3][i]
+    
+                
+              
+site = int(input('Choose a site : '))
+f, axarr = plt.subplots(3, sharex=True)
+axarr[0].set_title('Site'+str(site))
+axarr[0].scatter(mYears_name, se['se_%02d' % site][1])
+axarr[1].scatter(mYears_name, se['se_%02d' % site][2])
+axarr[2].scatter(mYears_name, se['se_%02d' % site][3])
+
 
 """
 for key, value in sorted(se.items()):
