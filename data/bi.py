@@ -14,7 +14,7 @@ CHANGE PATH
 # Moduls imported
 import numpy as np
 
-path = "/gps/Bruce/KilaueaKoaeProject/data/bi"
+path = "C:/Users/bruce/Desktop/KilaueaKoaeProject/KilaueaKoaeProject/data/bi"
 
 
 # feature: size of doc

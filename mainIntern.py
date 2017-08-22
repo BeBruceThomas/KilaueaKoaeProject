@@ -27,7 +27,7 @@ print("Files in '%s': %s" % (cwd, files))
 
 
 # Choose the path to access data: have to find a solution to change only in the main only or directly emter in the interface 
-path = "/gps/Bruce/KilaueaKoaeProject"
+path = "C:/Users/bruce/Desktop/KilaueaKoaeProject/KilaueaKoaeProject"
 
 
 import coords

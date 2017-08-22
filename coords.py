@@ -32,7 +32,7 @@ nsites = 66
 #-------------------------------------------------------------------------- 
 
 # Open Excel
-path = "/gps/Bruce/KilaueaKoaeProject/data/data_koae/excel"
+path = "C:/Users/bruce/Desktop/KilaueaKoaeProject/KilaueaKoaeProject/data/data_koae/excel"
 k2003 = xlrd.open_workbook(path+"/KOAE_2003.xlsx")
 k2004 = xlrd.open_workbook(path+"/KOAE_2004.xlsx")
 k2006 = xlrd.open_workbook(path+"/KOAE_2006.xlsx")
@@ -412,7 +412,7 @@ for site in range(1, nsites+1):
                 se['se_%02d' % site][3][year] = m[3][i]
     
                 
-              
+
 site = int(input('Choose a site : '))
 f, axarr = plt.subplots(3, sharex=True)
 axarr[0].set_title('Site'+str(site))
